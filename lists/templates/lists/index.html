@@ -1,0 +1,23 @@
+{% extends 'lists/base.html' %}
+{% block title %}
+Index
+{% endblock %}
+
+{% block body %}
+
+{{ lists }}
+<ul>
+    {% for list in lists %}
+    <li> <a href="{{ list.link }}" target=”_blank”> {{ list }} </a>
+    <ol>
+
+    <li> Price: {{ list.price }} </li>
+    <li> Note: {{ list.note }} </li>
+        <li> {{ list.userid }}</li>
+
+          </ol>
+    </li>
+
+    {% endfor %}
+</ul>
+{% endblock %}
