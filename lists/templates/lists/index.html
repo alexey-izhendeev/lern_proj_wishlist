@@ -4,6 +4,22 @@ Index
 {% endblock %}
 
 {% block body %}
+<a href="{% url 'logout' %}">Log out</a>
+
+<h1> Wishlist of {{ user }}</h1>
+<ul>
+    {% for list in wishlist %}
+    <li> <a href="{{ list.link }}" target=”_blank”> {{ list }} </a>
+    <ol>
+    <li> Price: {{ list.price }} </li>
+    <li> Note: {{ list.note }} </li>
+          </ol>
+    </li>
+
+    {% endfor %}
+</ul>
+
+
 
 {{ lists }}
 <ul>
