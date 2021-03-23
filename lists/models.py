@@ -14,11 +14,6 @@ class WishListItem(models.Model):
         return self.name
 
 
-class User(models.Model):
-    first = models.CharField(max_length=64)
-    last = models.CharField(max_length=64)
 
-    def __str__(self):
-        return f'{self.first} {self.last}'
 
 

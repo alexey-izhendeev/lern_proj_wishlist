@@ -6,4 +6,11 @@ class WishForm(forms.ModelForm):
 
     class Meta:
         model = WishListItem
-        fields = ('name', 'price', 'link', 'note', 'userid')
+        fields = ('name', 'price', 'link', 'note')
+
+'''class User(models.Model):
+    first = models.CharField(max_length=64)
+    last = models.CharField(max_length=64)
+
+    def __str__(self):
+        return f'{self.first} {self.last}'''

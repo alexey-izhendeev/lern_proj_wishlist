@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from .models import WishListItem
+from .forms import WishForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -22,6 +26,24 @@ def user_wishes(request, user_id):
         'user': user
     })
 
+
+def add_item(request, user_id):
+    if request.method == 'POST':
+        form = WishForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.userid = request.user
+            item.save()
+            return HttpResponseRedirect(reverse('user', args=[user_id]))
+    else:
+        form = WishForm()
+    return render(request, 'lists/wishlist_edit.html', {
+            'form': form
+        })
+
+
+def delete_item(request, user_id):
+    pass
 
 def login_view(request):
     if request.method == 'POST':

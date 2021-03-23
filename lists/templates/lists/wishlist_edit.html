@@ -1,0 +1,16 @@
+{% extends 'lists/base.html' %}
+{% block title %}
+Edit wishlist
+{% endblock %}
+
+{% block body %}
+
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="save btn btn-default">Save</button>
+</form>
+</form>
+
+
+{% endblock %}

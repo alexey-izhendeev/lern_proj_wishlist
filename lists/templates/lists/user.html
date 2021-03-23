@@ -5,8 +5,13 @@ Wishlist of {{ user }}
 
 {% block body %}
 
+<ul>
+    <li><a href="{% url 'logout' %}">Log out</a></li>
+    <li><a href="{% url 'add' user.id %}">Add an item to your wishlist</a> </li>
 
-<h1> Wishlist of {{ user }}</h1>
+</ul>
+
+<h1> Wishlist of {{ user.first_name }} {{ user.last_name }}</h1>
 <ul>
     {% for list in wishlist %}
     <li> <a href="{{ list.link }}" target=”_blank”> {{ list }} </a>

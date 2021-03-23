@@ -6,7 +6,17 @@ Index
 {% block body %}
 <a href="{% url 'logout' %}">Log out</a>
 
-<h1> Wishlist of {{ user }}</h1>
+<h1> Welcome {{ user.first_name }} {{ user.last_name }}! </h1>
+
+What do you want to do?
+<p></p>
+<ul>
+    <li><a href="{% url 'user' user.id %}">Watch your wishlist</a> </li>
+    <li><a href="{% url 'add' user.id %}">Add an item to your wishlist</a> </li>
+    <li><a href="{% url 'delete' user.id %}">Delete an item form your wishlist</a> </li>
+</ul>
+
+
 <ul>
     {% for list in wishlist %}
     <li> <a href="{{ list.link }}" target=”_blank”> {{ list }} </a>
@@ -19,21 +29,4 @@ Index
     {% endfor %}
 </ul>
 
-
-
-{{ lists }}
-<ul>
-    {% for list in lists %}
-    <li> <a href="{{ list.link }}" target=”_blank”> {{ list }} </a>
-    <ol>
-
-    <li> Price: {{ list.price }} </li>
-    <li> Note: {{ list.note }} </li>
-        <li> {{ list.userid }}</li>
-
-          </ol>
-    </li>
-
-    {% endfor %}
-</ul>
 {% endblock %}
