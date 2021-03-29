@@ -7,7 +7,12 @@ Edit wishlist
 
 <form method="POST" class="post-form">
     {% csrf_token %}
-    {{ form }}
+
+    <p></p>
+    <p>Name: {{ form.name }}</p>
+    <p>Price: {{ form.price }}</p>
+    <p>LInk: {{ form.link }}</p>
+    <p>Note: {{ form.note }}</p>
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
 </form>

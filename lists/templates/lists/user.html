@@ -23,4 +23,27 @@ Wishlist of {{ user }}
 
     {% endfor %}
 </ul>
+
+<h3>Delete an item from your wishlist:</h3>
+<form action="{% url 'delete' user.id %}" method="post">
+    {% csrf_token %}
+    <select name="item">
+        {% for item in wishlist %}
+        <option value="{{ item.id }}">{{ item }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Delete from wishlist">
+</form>
+
+<h3>Edit an item from your wishlist:</h3>
+<form action="{% url 'edit' user.id %}" method="post">
+    {% csrf_token %}
+    <select name="item">
+        {% for item in wishlist %}
+        <option value="{{ item.id }}">{{ item }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Edit this item">
+</form>
+
 {% endblock %}

@@ -13,12 +13,11 @@ What do you want to do?
 <ul>
     <li><a href="{% url 'user' user.id %}">Watch your wishlist</a> </li>
     <li><a href="{% url 'add' user.id %}">Add an item to your wishlist</a> </li>
-    <li><a href="{% url 'delete' user.id %}">Delete an item form your wishlist</a> </li>
 </ul>
 
 
-<ul>
-    {% for list in wishlist %}
+<ol>
+    {% for list in wlists %}
     <li> <a href="{{ list.link }}" target=”_blank”> {{ list }} </a>
     <ol>
     <li> Price: {{ list.price }} </li>
@@ -27,6 +26,6 @@ What do you want to do?
     </li>
 
     {% endfor %}
-</ul>
+</ol>
 
 {% endblock %}

@@ -43,7 +43,37 @@ def add_item(request, user_id):
 
 
 def delete_item(request, user_id):
-    pass
+    if request.method == 'POST':
+        item = WishListItem.objects.get(pk=int(request.POST['item']))
+        item.delete()
+        return HttpResponseRedirect(reverse('user', args=[user_id]))
+
+
+def edit_item(request, user_id):
+    if request.method == 'POST':
+        item = WishListItem.objects.get(pk=int(request.POST['item']))
+
+        return render(request, 'lists/edit_item.html', {
+            'item': item,
+        })
+        #return HttpResponseRedirect(reverse('add', args=[user_id]))
+
+
+def save_item(request, user_id, item_id):
+    if request.method == 'POST':
+        # wishlist = WishListItem.objects.all().filter(userid=user_id)
+        item = WishListItem.objects.get(pk=item_id)
+        # item = WishListItem.objects.get(pk=int(request.POST['item']))
+        item.name = request.POST['name']
+        item.price = request.POST['price']
+        item.link = request.POST['link']
+        item.note = request.POST['note']
+        #item.userid = user_id
+        item.save()
+
+        return HttpResponseRedirect(reverse('user', args=[user_id]))
+
+
 
 def login_view(request):
     if request.method == 'POST':

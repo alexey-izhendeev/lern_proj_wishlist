@@ -1,0 +1,20 @@
+{% extends 'lists/base.html' %}
+{% block title %}
+Edit item
+{% endblock %}
+
+{% block body %}
+<h1>Edit item {{item.id}} </h1>
+<div id="itemid" value="{{item.id}}"></div>
+<form action="{% url 'save' user.id item.id %}" method="post">
+
+    {% csrf_token %}
+    <p>Item name: <input type="text" name="name" value="{{item.name}}"></p>
+    <p>Item price: <input type="text" name="price" value="{{item.price}}"></p>
+    <p>Item link: <input type="text" name="link" value="{{item.link}}"></p>
+    <p>Item note: <input type="text" name="note" value="{{item.note}}"></p>
+     <p><input type="submit" value="Save"></p>
+</form>
+
+
+{% endblock %}
