@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import WishlistView
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -11,5 +11,4 @@ urlpatterns = [
     path('<int:user_id>/delete', views.delete_item, name='delete'),
     path('<int:user_id>/edit', views.edit_item, name='edit'),
     path('<int:user_id>/<int:item_id>/save', views.save_item, name='save'),
-    path('wishlist', WishlistView.as_view()),
 ]
