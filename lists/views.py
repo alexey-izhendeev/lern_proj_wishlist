@@ -6,6 +6,10 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import WishlistSerializer
+
 
 def index(request):  # main page
     if not request.user.is_authenticated:
@@ -88,3 +92,22 @@ def logout_view(request):
     return render(request, 'lists/login.html', {
         'message': 'Logged out.'
     })
+
+
+class WishlistView(APIView):
+    def get(self, request):
+        wishlist = WishListItem.objects.all()
+        serializer = WishlistSerializer(wishlist, many=True)
+        return Response({'wishlist': serializer.data})
+
+    def post(self, request):
+        item = request.data.get('item')
+        serializer = WishlistSerializer(data=item)
+        if serializer.is_valid(raise_exception=True):
+            item_saved = serializer.save()
+        return Response({'success': f'Item {item_saved} created successfully'})
+
+
+
+
+

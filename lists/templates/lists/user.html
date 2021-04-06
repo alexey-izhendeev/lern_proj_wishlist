@@ -12,6 +12,7 @@ Wishlist of {{ user }}
 </ul>
 
 <h1> Wishlist of {{ user.first_name }} {{ user.last_name }}</h1>
+User_id is {{ user.id }}
 <ul>
     {% for list in wishlist %}
     <li> <a href="{{ list.link }}" target=”_blank”> {{ list }} </a>
